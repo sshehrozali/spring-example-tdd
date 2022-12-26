@@ -1,2 +1,7 @@
-package com.app.demo;public class TodoService {
+package com.app.demo;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class TodoService {
 }
