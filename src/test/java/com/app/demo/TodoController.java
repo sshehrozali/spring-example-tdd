@@ -14,7 +14,10 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
@@ -27,12 +30,17 @@ public class TodoController {
     @Test
     @DisplayName("Should return list of all todos")
     void shouldReturnAllTodos() throws Exception {
+        // Given
         List<Todo> todoList = new ArrayList<>();
         todoList.add(new Todo("Lunch", "Get lunch at 2PM"));
 
+        // When
         when(todoService.getAllTodos()).thenReturn(todoList);
 
+        // Then
         mockMvc.perform(MockMvcRequestBuilders.get("/todos")
-                .contentType(MediaType.APPLICATION_JSON));
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andDo(print());
     }
 }
