@@ -1,5 +1,6 @@
 package com.app.demo;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,4 +15,9 @@ public class TodoController {
     MockMvc mockMvc;
     @MockBean
     private TodoService todoService;
+
+    @Test
+    void shouldReturnAllTodos() {
+
+    }
 }
