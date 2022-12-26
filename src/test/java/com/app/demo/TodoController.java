@@ -13,5 +13,5 @@ public class TodoController {
     @Autowired
     MockMvc mockMvc;
     @MockBean
-    private final TodoService todoService;
+    private TodoService todoService;
 }
