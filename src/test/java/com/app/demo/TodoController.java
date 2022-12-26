@@ -6,8 +6,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +26,13 @@ public class TodoController {
 
     @Test
     @DisplayName("Should return list of all todos")
-    void shouldReturnAllTodos() {
+    void shouldReturnAllTodos() throws Exception {
         List<Todo> todoList = new ArrayList<>();
         todoList.add(new Todo("Lunch", "Get lunch at 2PM"));
 
         when(todoService.getAllTodos()).thenReturn(todoList);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/todos")
+                .contentType(MediaType.APPLICATION_JSON));
     }
 }
