@@ -1,5 +1,6 @@
 package com.app.demo;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class TodoController {
     private TodoService todoService;
 
     @Test
+    @DisplayName("Should return list of all todos")
     void shouldReturnAllTodos() {
         List<Todo> todoList = new ArrayList<>();
         todoList.add(new Todo("Lunch", "Get lunch at 2PM"));
