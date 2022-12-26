@@ -8,6 +8,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.mockito.Mockito.when;
+
 @ExtendWith(SpringExtension.class)
 @WebMvcTest
 public class TodoController {
@@ -18,6 +23,9 @@ public class TodoController {
 
     @Test
     void shouldReturnAllTodos() {
+        List<Todo> todoList = new ArrayList<>();
+        todoList.add(new Todo("Lunch", "Get lunch at 2PM"));
 
+        when(todoService.getAllTodos()).thenReturn(todoList);
     }
 }
